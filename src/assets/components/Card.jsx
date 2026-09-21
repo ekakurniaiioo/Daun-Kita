@@ -1,4 +1,4 @@
-export function Card({ dummyPlants, search }) {
+export function Card({ dummyPlants, search, filter }) {
   return (
     <section className="max-w-6xl grid grid-cols-3 mx-auto gap-16">
       {dummyPlants
@@ -6,8 +6,9 @@ export function Card({ dummyPlants, search }) {
           const matchSearch = plant.nama
             .toLowerCase()
             .includes(search.toLowerCase());
+          const matchFilter = filter === "" || plant.kategori === filter;
 
-            return matchSearch;
+            return matchSearch && matchFilter;
         })
         .map((plant) => (
           <div key={plant.id} className="card bg-base-100 w-96 shadow-sm">

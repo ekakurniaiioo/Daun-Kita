@@ -5,7 +5,8 @@ import { Card } from "./Card";
 import { dummyPlants } from "../data/Plants";
 
 export function Katalog() {
-  const [search, SetSearch] = useState("")
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("");
 
   return (
     <section className="min-h-screen bg-cream py-24">
@@ -18,14 +19,17 @@ export function Katalog() {
       <section className="max-w-3xl mx-auto flex items-center justify-between gap-4 mb-24">
         <SearchKatalog 
         search={search}
-        setSearch={SetSearch}
+        setSearch={setSearch}
         />
-        <FilterKatalog />
+        <FilterKatalog 
+        setFilter={setFilter}
+        />
       </section>
 
         <Card 
         dummyPlants={dummyPlants}
         search={search}
+        filter={filter}
         />
     </section>
   );
