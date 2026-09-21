@@ -1,6 +1,7 @@
 import { SearchKatalog } from "./SearchKatalog";
 import { FilterKatalog } from "./FilterKatalog";
 import { Card } from "./Card";
+import { dummyPlants } from "../data/plants";
 
 export function Katalog() {
   return (
@@ -16,7 +17,9 @@ export function Katalog() {
         <FilterKatalog />
       </section>
 
-        <Card />
+        <Card 
+        dummyPlants={dummyPlants}
+        />
     </section>
   );
 }
