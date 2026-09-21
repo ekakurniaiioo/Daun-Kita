@@ -4,7 +4,7 @@ export function Hero() {
       <div
         className="hero min-h-screen"
         style={{
-          backgroundImage: "https://placehold.co/400x400?text=DAUNKITA",
+          backgroundImage: "url('/DaunKitaHero.jpg')",
         }}
       >
         <div className="hero-overlay"></div>
