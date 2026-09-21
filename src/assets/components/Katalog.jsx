@@ -1,5 +1,6 @@
 import { SearchKatalog } from "./SearchKatalog";
 import { FilterKatalog } from "./FilterKatalog";
+import { Card } from "./Card";
 
 export function Katalog() {
   return (
@@ -10,10 +11,12 @@ export function Katalog() {
         </h2>
       </header>
 
-      <section className="max-w-3xl mx-auto flex items-center justify-between gap-4">
+      <section className="max-w-3xl mx-auto flex items-center justify-between gap-4 mb-24">
         <SearchKatalog />
         <FilterKatalog />
       </section>
+
+        <Card />
     </section>
   );
 }
