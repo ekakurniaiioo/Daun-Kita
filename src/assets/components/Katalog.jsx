@@ -16,11 +16,12 @@ export function Katalog() {
         </h2>
       </header>
 
-      <section className="max-w-3xl mx-auto flex items-center justify-between gap-4 mb-24">
+      <section className="max-w-4xl bg-forest-light py-4 px-4 mx-auto flex items-center justify-between gap-4 mb-24 border border-black rounded-xl shadow-lg">
         <SearchKatalog 
         search={search}
         setSearch={setSearch}
         />
+        <span className="text-black text-2xl text-center">|</span>
         <FilterKatalog 
         setFilter={setFilter}
         />
