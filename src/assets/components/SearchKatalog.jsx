@@ -1,4 +1,4 @@
-export function SearchKatalog() {
+export function SearchKatalog({ search, setSearch }) {
   return (
     <div>
       <label className="input bg-forest">
@@ -18,7 +18,13 @@ export function SearchKatalog() {
             <path d="m21 21-4.3-4.3"></path>
           </g>
         </svg>
-        <input type="search" className="grow text-white" placeholder="Search" />
+        <input
+          value={search}
+          type="search"
+          className="grow text-white"
+          placeholder="Search"
+          onChange={(event) => setSearch(event.target.value)}
+        />
       </label>
     </div>
   );
