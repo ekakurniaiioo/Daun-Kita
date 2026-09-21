@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SearchKatalog } from "./SearchKatalog";
 import { FilterKatalog } from "./FilterKatalog";
 import { Card } from "./Card";
-import { dummyPlants } from "../data/Plants";
+import { dummyPlants } from "../data/plants";
 
 export function Katalog() {
   const [search, setSearch] = useState("");

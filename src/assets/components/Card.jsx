@@ -8,22 +8,46 @@ export function Card({ dummyPlants, search, filter }) {
             .includes(search.toLowerCase());
           const matchFilter = filter === "" || plant.kategori === filter;
 
-            return matchSearch && matchFilter;
+          return matchSearch && matchFilter;
         })
         .map((plant) => (
-          <div key={plant.id} className="card bg-base-100 w-96 shadow-sm">
-            <figure>
-              <img src="/DaunKitaHero.jpg" alt="Plant" />
+          <div
+            key={plant.id}
+            className="card w-96 overflow-hidden rounded-xl border border-forest bg-cream shadow-md"
+          >
+            <figure className="h-64 bg-[#DCEBE3]">
+              <img
+                src={plant.image}
+                alt={plant.nama}
+                className="h-full w-full object-cover"
+              />
             </figure>
-            <div className="card-body bg-forest-light">
-              <p className="text-black font-inter">{plant.kategori}</p>
-              <h2 className="text-xl text-black font-poppins">{plant.nama}</h2>
-              <div className="card-actions justify-between items-center">
-                <p className="text-xl text-black font-inter">
+
+            <div className="card-body bg-forest-light p-6">
+              <div>
+                <p className="text-sm text-forest font-inter">
+                  {plant.kategori}
+                </p>
+
+                <h2 className="mt-1 text-2xl font-bold text-black font-poppins">
+                  {plant.nama}
+                </h2>
+              </div>
+
+              <div className="mt-4 flex items-center justify-between">
+                <p className="text-xl font-medium text-black font-inter">
                   Rp {plant.harga.toLocaleString("id-ID")}
                 </p>
-                <button className="btn bg-forest rounded-4xl font-poppins">
-                  + Keranjang
+
+                <button
+                  disabled={plant.stok === 0}
+                  className={
+                    plant.stok === 0
+                      ? "btn rounded-full bg-forest/40 text-cream font-poppins"
+                      : "btn rounded-full bg-forest text-cream font-poppins transition hover:bg-amber-500 hover:text-black"
+                  }
+                >
+                  {plant.stok === 0 ? "Stok Habis" : "+ Keranjang"}
                 </button>
               </div>
             </div>
