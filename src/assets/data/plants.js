@@ -23,7 +23,7 @@ export const dummyPlants = [
   {
     id: 4,
     nama: "Kaktus Mini",
-    kategori: "kaktus & Sukulen",
+    kategori: "Kaktus & Sukulen",
     harga: 15000,
     stok: 30,
   },
