@@ -1,4 +1,4 @@
-export function Card({ dummyPlants, search, filter }) {
+export function Card({ dummyPlants, search, filter, addToCart }) {
   return (
     <section className="max-w-6xl grid grid-cols-3 mx-auto gap-16">
       {dummyPlants
@@ -41,6 +41,10 @@ export function Card({ dummyPlants, search, filter }) {
 
                 <button
                   disabled={plant.stok === 0}
+                  onClick={() => {
+                    addToCart(plant);
+                    alert(`${plant.nama} berhasil ditambahkan ke keranjang!`);
+                  }}
                   className={
                     plant.stok === 0
                       ? "btn rounded-full bg-forest/40 text-cream font-poppins"

@@ -6,15 +6,17 @@ import { Footer } from "./assets/components/Footer";
 import "./index.css";
 
 function App() {
+  const [cart, setCart] = useState([]);
+
   return (
     <>
       <header>
-        <Navbar />
+        <Navbar cart={cart} setCart={setCart}/>
       </header>
 
       <main>
         <Hero />
-        <Katalog />
+        <Katalog cart={cart} setCart={setCart} />
       </main>
 
       <Footer />

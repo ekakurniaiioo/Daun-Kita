@@ -4,34 +4,60 @@ import { FilterKatalog } from "./FilterKatalog";
 import { Card } from "./Card";
 import { dummyPlants } from "../data/plants";
 
-export function Katalog() {
+export function Katalog({ cart, setCart }) {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
+
+  function addToCart(plant) {
+    const existingPlant = cart.find((item) => item.id === plant.id);
+
+    if (existingPlant) {
+      setCart(
+        cart.map((item) => {
+          if (item.id === plant.id) {
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+            };
+          }
+
+          return item;
+        }),
+      );
+    } else {
+      setCart([
+        ...cart,
+        {
+          ...plant,
+          quantity: 1,
+        },
+      ]);
+    }
+  }
 
   return (
     <section className="min-h-screen bg-cream py-24">
       <header className="mb-12">
-        <h2 id="koleksi" className="text-3xl text-black font-poppins text-center">
+        <h2
+          id="koleksi"
+          className="text-3xl text-black font-poppins text-center"
+        >
           Koleksi
         </h2>
       </header>
 
       <section className="max-w-4xl bg-forest-light py-4 px-4 mx-auto flex items-center justify-between gap-4 mb-24 border border-black rounded-xl shadow-lg">
-        <SearchKatalog 
-        search={search}
-        setSearch={setSearch}
-        />
+        <SearchKatalog search={search} setSearch={setSearch} />
         <span className="text-black text-2xl text-center">|</span>
-        <FilterKatalog 
-        setFilter={setFilter}
-        />
+        <FilterKatalog setFilter={setFilter} />
       </section>
 
-        <Card 
+      <Card
         dummyPlants={dummyPlants}
         search={search}
         filter={filter}
-        />
+        addToCart={addToCart}
+      />
     </section>
   );
 }
