@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <header>
+      <header className="sticky top-0 z-30">
         <Navbar cart={cart} setCart={setCart}/>
       </header>
 

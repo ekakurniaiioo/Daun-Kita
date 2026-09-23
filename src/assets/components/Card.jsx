@@ -1,55 +1,65 @@
 export function Card({ dummyPlants, search, filter, addToCart }) {
-  return (
-    <section className="max-w-6xl grid grid-cols-3 mx-auto gap-16">
-      {dummyPlants
-        .filter((plant) => {
-          const matchSearch = plant.nama
-            .toLowerCase()
-            .includes(search.toLowerCase());
-          const matchFilter = filter === "" || plant.kategori === filter;
+  const filteredPlants = dummyPlants.filter((plant) => {
+    const matchSearch = plant.nama.toLowerCase().includes(search.toLowerCase());
+    const matchFilter = filter === "" || plant.kategori === filter;
+    return matchSearch && matchFilter;
+  });
 
-          return matchSearch && matchFilter;
-        })
-        .map((plant) => (
+  if (filteredPlants.length === 0) {
+    return (
+      <div className="py-16 text-center">
+        <p className="font-poppins text-lg text-gray-500">
+          Tanaman yang kamu cari tidak ditemukan.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {filteredPlants.map((plant) => (
           <div
             key={plant.id}
-            className="card w-96 overflow-hidden rounded-xl border border-forest bg-cream shadow-md"
+            className="group relative flex flex-col overflow-hidden rounded-2xl border border-forest/20 bg-cream shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
           >
-            <figure className="h-64 bg-[#DCEBE3]">
+            <span className="absolute top-3 left-3 z-10 rounded-full bg-forest/80 px-3 py-1 font-inter text-xs font-medium text-cream backdrop-blur-md">
+              {plant.kategori}
+            </span>
+
+            <figure className="relative h-56 w-full overflow-hidden bg-[#DCEBE3]">
               <img
                 src={plant.image}
                 alt={plant.nama}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </figure>
 
-            <div className="card-body bg-forest-light p-6">
+            <div className="flex flex-1 flex-col justify-between bg-forest-light/30 p-5">
               <div>
-                <p className="text-sm text-forest font-inter">
-                  {plant.kategori}
-                </p>
-
-                <h2 className="mt-1 text-2xl font-bold text-black font-poppins">
+                <h3 className="font-poppins text-xl font-bold leading-tight text-black">
                   {plant.nama}
-                </h2>
+                </h3>
               </div>
 
-              <div className="mt-4 flex items-center justify-between">
-                <p className="text-xl font-medium text-black font-inter">
-                  Rp {plant.harga.toLocaleString("id-ID")}
-                </p>
+              <div className="mt-4 flex items-center justify-between gap-2 border-t border-forest/10 pt-3">
+                <div>
+                  <span className="block font-inter text-xs text-gray-500">
+                    Harga
+                  </span>
+                  <p className="font-inter text-lg font-bold text-black">
+                    Rp {plant.harga.toLocaleString("id-ID")}
+                  </p>
+                </div>
 
                 <button
                   disabled={plant.stok === 0}
-                  onClick={() => {
-                    addToCart(plant);
-                    alert(`${plant.nama} berhasil ditambahkan ke keranjang!`);
-                  }}
-                  className={
+                  onClick={() => addToCart(plant)}
+                  className={`cursor-pointer rounded-xl px-4 py-2 font-poppins text-xs font-semibold transition-all duration-200 active:scale-95 ${
                     plant.stok === 0
-                      ? "btn rounded-full bg-forest/40 text-cream font-poppins"
-                      : "btn rounded-full bg-forest text-cream font-poppins transition hover:bg-amber-500 hover:text-black"
-                  }
+                      ? "cursor-not-allowed bg-gray-300 text-gray-500"
+                      : "bg-forest text-cream hover:bg-amber-500 hover:text-black shadow-sm"
+                  }`}
                 >
                   {plant.stok === 0 ? "Stok Habis" : "+ Keranjang"}
                 </button>
@@ -57,6 +67,7 @@ export function Card({ dummyPlants, search, filter, addToCart }) {
             </div>
           </div>
         ))}
+      </div>
     </section>
   );
 }

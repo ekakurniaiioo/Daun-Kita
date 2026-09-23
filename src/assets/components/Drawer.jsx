@@ -19,7 +19,7 @@ export default function Drawer({ isOpen, onClose, children }) {
           <h2 className="text-lg font-bold text-gray-800">Keranjang</h2>
           <button
             onClick={onClose}
-            className="rounded-lg px-3 py-1.5 text-black hover:bg-amber-500 cursor-pointer"
+            className="rounded-lg px-3 py-1.5 text-black hover:bg-amber-500 cursor-pointer transition-colors duration-300"
           >
             ✕
           </button>

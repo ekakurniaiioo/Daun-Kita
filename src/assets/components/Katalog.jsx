@@ -46,10 +46,18 @@ export function Katalog({ cart, setCart }) {
         </h2>
       </header>
 
-      <section className="max-w-4xl bg-forest-light py-4 px-4 mx-auto flex items-center justify-between gap-4 mb-24 border border-black rounded-xl shadow-lg">
-        <SearchKatalog search={search} setSearch={setSearch} />
-        <span className="text-black text-2xl text-center">|</span>
-        <FilterKatalog setFilter={setFilter} />
+      <section className="mx-auto mb-12 max-w-5xl rounded-2xl border border-forest/20 bg-forest-light/60 p-4 shadow-md backdrop-blur-md md:mb-16 md:p-6">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="w-full md:w-1/3">
+            <SearchKatalog search={search} setSearch={setSearch} />
+          </div>
+
+          <div className="hidden h-8 w-1 bg-forest/20 md:block" />
+
+          <div className="w-full md:w-auto">
+            <FilterKatalog setFilter={setFilter} />
+          </div>
+        </div>
       </section>
 
       <Card
