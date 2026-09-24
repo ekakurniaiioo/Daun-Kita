@@ -1,5 +1,5 @@
-export function Card({ dummyPlants, search, filter, addToCart }) {
-  const filteredPlants = dummyPlants.filter((plant) => {
+export function Card({ plants, search, filter, addToCart }) {
+  const filteredPlants = plants.filter((plant) => {
     const matchSearch = plant.nama.toLowerCase().includes(search.toLowerCase());
     const matchFilter = filter === "" || plant.kategori === filter;
     return matchSearch && matchFilter;
