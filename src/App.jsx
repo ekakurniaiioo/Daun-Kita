@@ -6,9 +6,15 @@ import { Footer } from "./assets/components/Footer";
 import "./index.css";
 
 function App() {
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart")) || []
-  );
+  let cartData;
+
+  try {
+    cartData = JSON.parse(localStorage.getItem("cart")) || [];
+  } catch {
+    cartData = [];
+  }
+
+  const [cart, setCart] = useState(cartData);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -17,7 +23,7 @@ function App() {
   return (
     <>
       <header className="sticky top-0 z-30">
-        <Navbar cart={cart} setCart={setCart}/>
+        <Navbar cart={cart} setCart={setCart} />
       </header>
 
       <main>

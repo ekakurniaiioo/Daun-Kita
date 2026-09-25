@@ -56,10 +56,6 @@ export function Navbar({ cart, setCart }) {
       })
       .join("\n");
 
-    const totalHarga = cart.reduce((total, item) => {
-      return total + item.harga * item.quantity;
-    }, 0);
-
     const pesan = `${teks}
 
 ${pesanan}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SearchKatalog } from "./SearchKatalog";
 import { FilterKatalog } from "./FilterKatalog";
 import { Card } from "./Card";
@@ -7,18 +7,15 @@ import { dummyPlants } from "../data/plants";
 export function Katalog({ cart, setCart }) {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
-  const [plants, setPlants] = useState(
-    JSON.parse(localStorage.getItem("dummyPlants")) || dummyPlants,
-  );
-
-  useEffect(() => {
-    localStorage.setItem("dummyPlants", JSON.stringify(plants));
-  }, [plants]);
 
   function addToCart(plant) {
     const existingPlant = cart.find((item) => item.id === plant.id);
 
     if (existingPlant) {
+      if (existingPlant.quantity >= plant.stok) {
+        return;
+      }
+
       setCart(
         cart.map((item) => {
           if (item.id === plant.id) {
@@ -68,7 +65,7 @@ export function Katalog({ cart, setCart }) {
       </section>
 
       <Card
-        plants={plants}
+        dummyPlants={dummyPlants}
         search={search}
         filter={filter}
         addToCart={addToCart}
